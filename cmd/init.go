@@ -36,6 +36,12 @@ func NewDistributedFileStorageCLI() *DistributedFileStorageCLI{
     Handler: cli.exitApplication,
   })
 
+  cli.RegisterCommand(Command{
+    Name: "help",
+    Description: "Show available commands",
+    Handler: cli.showHelp,
+  })
+
   return cli
 }
 
