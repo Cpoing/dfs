@@ -18,7 +18,7 @@ type DistributedFileStorageCLI struct {
   running bool
 }
 
-func NewDistributedFileStorageCLI() {
+func NewDistributedFileStorageCLI() *DistributedFileStorageCLI{
   cli := &DistributedFileStorageCLI{
     commands: make(map[string]Command),
     running: true,
@@ -29,6 +29,14 @@ func NewDistributedFileStorageCLI() {
     Description: "Initializing the distributed file storage system",
     Handler: cli.initSystem,
   })
+
+  cli.RegisterCommand(Command{
+    Name: "exit",
+    Description: "Exit the application",
+    Handler: cli.exitApplication,
+  })
+
+  return cli
 }
 
 func (cli *DistributedFileStorageCLI) RegisterCommand(cmd Command) {
